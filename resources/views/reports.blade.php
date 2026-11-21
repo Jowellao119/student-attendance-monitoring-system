@@ -177,22 +177,44 @@
         background: #faf9fd;
     }
 
-    .present {
-        background: #e5f8ed;
-        color: #219653;
+    /* PRESENT AND ABSENT STATUS WITH DOTS */
+    .present,
+    .absent {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
         padding: 6px 12px;
         border-radius: 20px;
         font-size: 12px;
         font-weight: bold;
     }
 
+    .present {
+        background: #e5f8ed;
+        color: #219653;
+    }
+
     .absent {
         background: #fdeaea;
         color: #c0392b;
-        padding: 6px 12px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
+    }
+
+    .present::before,
+    .absent::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        display: inline-block;
+        flex-shrink: 0;
+    }
+
+    .present::before {
+        background: #219653;
+    }
+
+    .absent::before {
+        background: #c0392b;
     }
 
     .empty {
@@ -305,6 +327,13 @@
             background: transparent !important;
             color: black !important;
             padding: 0;
+        }
+
+        .present::before,
+        .absent::before {
+            background: #555 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
         .table-wrap {
