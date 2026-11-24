@@ -7,16 +7,18 @@
 @push('styles')
 <style>
     .welcome {
-        background: linear-gradient(120deg, #6246a5, #a34d91);
+        background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
         color: white;
         padding: 27px 30px;
         border-radius: 14px;
         margin-bottom: 25px;
+        box-shadow: 0 8px 20px rgba(29, 78, 216, .12);
     }
 
     .welcome h1 {
         font-size: 25px;
         margin-bottom: 9px;
+        font-weight: 700;
     }
 
     .welcome p {
@@ -35,13 +37,19 @@
         background: white;
         padding: 22px;
         border-radius: 12px;
-        border-top: 4px solid #8062bd;
+        border-top: 4px solid #2563eb;
         box-shadow: 0 3px 12px rgba(30, 30, 60, .04);
+        transition: transform .2s, box-shadow .2s;
+    }
+
+    .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 18px rgba(30, 30, 60, .08);
     }
 
     .card:nth-child(2) { border-top-color: #219653; }
     .card:nth-child(3) { border-top-color: #d35454; }
-    .card:nth-child(4) { border-top-color: #8062bd; }
+    .card:nth-child(4) { border-top-color: #0891b2; }
 
     .card p {
         color: #858b9a;
@@ -51,12 +59,13 @@
 
     .card h2 {
         font-size: 27px;
-        color: #6246a5;
+        color: #2563eb;
+        font-weight: 700;
     }
 
     .present-color { color: #219653 !important; }
     .absent-color { color: #c0392b !important; }
-    .rate-color { color: #6246a5 !important; }
+    .rate-color { color: #0891b2 !important; }
 
     .section {
         background: white;
@@ -69,6 +78,8 @@
     .section h3 {
         font-size: 18px;
         margin-bottom: 20px;
+        color: #172554;
+        font-weight: 700;
     }
 
     .filter-form {
@@ -86,7 +97,7 @@
     .filter-form label {
         display: block;
         font-size: 13px;
-        font-weight: bold;
+        font-weight: 600;
         margin-bottom: 9px;
         color: #555e70;
     }
@@ -98,11 +109,12 @@
         border-radius: 8px;
         outline: none;
         font-size: 13px;
+        transition: .2s;
     }
 
     .filter-form input:focus {
-        border-color: #8062bd;
-        box-shadow: 0 0 0 3px rgba(128, 98, 189, .1);
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
     }
 
     .filter-form button {
@@ -110,36 +122,39 @@
         border: none;
         border-radius: 8px;
         cursor: pointer;
-        font-weight: bold;
+        font-weight: 600;
         color: white;
-        background: #6246a5;
+        background: linear-gradient(120deg, #2563eb, #0891b2);
         font-size: 13px;
+        transition: .2s;
     }
 
     .filter-form button:hover {
-        background: #50358f;
+        background: linear-gradient(120deg, #1d4ed8, #0e7490);
+        transform: translateY(-1px);
     }
 
     .reset-btn {
         padding: 12px 18px;
-        background: #f0eef5;
-        color: #6246a5;
+        background: #eff6ff;
+        color: #2563eb;
         border-radius: 8px;
         text-decoration: none;
         font-size: 13px;
-        font-weight: bold;
+        font-weight: 600;
+        transition: .2s;
     }
 
     .reset-btn:hover {
-        background: #e6e0f2;
+        background: #dbeafe;
     }
 
     .print-btn {
-        background: #333b4d !important;
+        background: #334155 !important;
     }
 
     .print-btn:hover {
-        background: #252b3b !important;
+        background: #1e293b !important;
     }
 
     .table-wrap {
@@ -162,22 +177,26 @@
     }
 
     .report-table th {
-        color: #858b9a;
+        color: #334155;
         font-size: 11px;
-        background: #f8f7fb;
+        background: #eff6ff;
         text-transform: uppercase;
         letter-spacing: .4px;
+        font-weight: 700;
     }
 
     .report-table td {
         color: #555e70;
     }
 
-    .report-table tbody tr:hover {
-        background: #faf9fd;
+    .report-table tbody tr {
+        transition: background .2s;
     }
 
-    /* PRESENT AND ABSENT STATUS WITH DOTS */
+    .report-table tbody tr:hover {
+        background: #f0f9ff;
+    }
+
     .present,
     .absent {
         display: inline-flex;
@@ -186,7 +205,7 @@
         padding: 6px 12px;
         border-radius: 20px;
         font-size: 12px;
-        font-weight: bold;
+        font-weight: 600;
     }
 
     .present {
@@ -253,7 +272,6 @@
         }
     }
 
-    /* PRINT / PDF */
     @media print {
         @page {
             size: A4 landscape;

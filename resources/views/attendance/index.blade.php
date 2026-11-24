@@ -7,7 +7,7 @@
 @push('styles')
 <style>
     .welcome {
-        background: linear-gradient(120deg, #6246a5, #a34d91);
+        background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
         color: white;
         padding: 27px 30px;
         border-radius: 14px;
@@ -42,6 +42,7 @@
 
     .panel-header h3 {
         font-size: 18px;
+        color: #172554;
     }
 
     .panel-header p {
@@ -82,21 +83,22 @@
         font-size: 13px;
         color: #555e70;
         background: white;
+        transition: .2s;
     }
 
     .form-group input:focus,
     .form-group select:focus {
-        border-color: #8062bd;
-        box-shadow: 0 0 0 3px rgba(128, 98, 189, .1);
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
     }
 
     .save-btn {
         display: inline-block;
         margin-top: 22px;
-        background: #6246a5;
+        background: linear-gradient(120deg, #2563eb, #0891b2);
         color: white;
         border: none;
-        padding: 11px 17px;
+        padding: 11px 18px;
         border-radius: 8px;
         font-size: 13px;
         font-weight: bold;
@@ -105,7 +107,8 @@
     }
 
     .save-btn:hover {
-        background: #50358f;
+        background: linear-gradient(120deg, #1d4ed8, #0e7490);
+        transform: translateY(-1px);
     }
 
     .table-wrapper {
@@ -128,8 +131,8 @@
     }
 
     .attendance-table th {
-        background: #f8f7fb;
-        color: #858b9a;
+        background: #eff6ff;
+        color: #1e40af;
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: .4px;
@@ -140,7 +143,7 @@
     }
 
     .attendance-table tbody tr:hover {
-        background: #faf9fd;
+        background: #f0f9ff;
     }
 
     .status {
@@ -214,6 +217,10 @@
 
         .form-group.full {
             grid-column: auto;
+        }
+
+        .welcome {
+            padding: 22px;
         }
     }
 </style>

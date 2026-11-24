@@ -1,256 +1,249 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Attendance - StudentTrack</title>
+@extends('layouts.app')
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+@section('title', 'StudentTrack | Edit Attendance')
+@section('page-title', 'Edit Attendance')
+@section('page-subtitle', 'Update the student attendance information.')
 
-        body {
-            background: #f5f6fa;
-            min-height: 100vh;
-            padding: 40px 20px;
-            color: #333;
-        }
+@push('styles')
+<style>
+    .edit-container {
+        max-width: 760px;
+        margin: 0 auto;
+    }
 
-        .container {
-            max-width: 680px;
-            margin: 20px auto;
-        }
+    .back-link {
+        display: inline-block;
+        margin-bottom: 18px;
+        color: #2563eb;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+    }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #8e44ad;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
-        }
+    .back-link:hover {
+        color: #0891b2;
+    }
 
-        .back-link:hover {
-            color: #c0392b;
-        }
+    .edit-card {
+        background: white;
+        border-radius: 14px;
+        padding: 30px;
+        box-shadow: 0 3px 12px rgba(30, 30, 60, .04);
+    }
 
-        .card {
-            background: white;
-            border-radius: 14px;
-            padding: 32px;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-        }
+    .edit-header {
+        border-bottom: 1px solid #edf0f5;
+        padding-bottom: 20px;
+        margin-bottom: 25px;
+    }
 
-        .header {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 22px;
-            margin-bottom: 25px;
-        }
+    .edit-header h2 {
+        font-size: 22px;
+        color: #172554;
+        margin-bottom: 7px;
+    }
 
-        .header h2 {
-            font-size: 25px;
-            margin-bottom: 8px;
-            color: #333;
-        }
+    .edit-header p {
+        color: #929aaa;
+        font-size: 13px;
+    }
 
-        .header p {
-            color: #888;
-            font-size: 14px;
-        }
+    .section-title {
+        font-size: 14px;
+        font-weight: bold;
+        color: #1d4ed8;
+        margin-bottom: 17px;
+    }
 
-        .section-title {
-            font-size: 15px;
-            font-weight: bold;
-            color: #8e44ad;
-            margin-bottom: 15px;
-        }
+    .form-group {
+        margin-bottom: 20px;
+    }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+    .form-group label {
+        display: block;
+        margin-bottom: 9px;
+        font-size: 13px;
+        font-weight: bold;
+        color: #555e70;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 9px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #444;
-        }
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #e5e7ef;
+        border-radius: 8px;
+        font-size: 13px;
+        background: white;
+        color: #555e70;
+        outline: none;
+        transition: .2s;
+    }
 
-        input, select {
-            width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
-            background: #fff;
-            color: #333;
-            outline: none;
-            transition: 0.2s;
-        }
+    .form-group input:focus,
+    .form-group select:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
+    }
 
-        input:focus, select:focus {
-            border-color: #8e44ad;
-            box-shadow: 0 0 0 3px rgba(142,68,173,0.10);
-        }
+    .student-box {
+        background: #eff6ff;
+        border: 1px solid #dbeafe;
+        border-radius: 9px;
+        padding: 16px;
+        margin-bottom: 25px;
+    }
 
-        .student-box {
-            background: #faf7fc;
-            border: 1px solid #eadcf0;
-            border-radius: 9px;
-            padding: 16px;
-            margin-bottom: 24px;
-        }
+    .student-box p {
+        font-size: 12px;
+        color: #64748b;
+        margin-bottom: 6px;
+    }
 
-        .student-box p {
-            font-size: 13px;
-            color: #777;
-            margin-bottom: 5px;
-        }
+    .student-box strong {
+        color: #1d4ed8;
+        font-size: 15px;
+    }
 
-        .student-box strong {
-            color: #8e44ad;
-            font-size: 15px;
-        }
+    .error-box {
+        background: #fff0f0;
+        color: #c03954;
+        padding: 13px 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 13px;
+    }
 
-        .error-box {
-            background: #fff1f0;
-            border: 1px solid #f5c6cb;
-            color: #c0392b;
-            padding: 13px 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 13px;
-        }
+    .error {
+        color: #c03954;
+        font-size: 12px;
+        margin-top: 6px;
+    }
 
-        .error {
-            color: #c0392b;
-            font-size: 12px;
-            margin-top: 6px;
-        }
+    .status-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
 
-        .status-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
+    .status-option {
+        position: relative;
+    }
 
-        .status-option {
-            position: relative;
-        }
+    .status-option input {
+        position: absolute;
+        opacity: 0;
+        width: 1px;
+        height: 1px;
+    }
 
-        .status-option input {
-            position: absolute;
-            opacity: 0;
-            width: 1px;
-            height: 1px;
-        }
+    .status-option label {
+        border: 1px solid #e5e7ef;
+        border-radius: 9px;
+        padding: 14px;
+        text-align: center;
+        cursor: pointer;
+        margin: 0;
+        transition: .2s;
+    }
 
-        .status-option label {
-            border: 1px solid #ddd;
-            border-radius: 9px;
-            padding: 14px;
-            text-align: center;
-            cursor: pointer;
-            margin: 0;
-            transition: 0.2s;
-        }
+    .status-option.present label {
+        color: #16834a;
+    }
 
-        .status-option.present label {
-            color: #219653;
-        }
+    .status-option.absent label {
+        color: #d35454;
+    }
 
-        .status-option.absent label {
-            color: #c0392b;
-        }
+    .status-option.present input:checked + label {
+        background: #e8f8ef;
+        border-color: #27ae60;
+    }
 
-        .status-option.present input:checked + label {
-            background: #eafaf1;
-            border-color: #27ae60;
-        }
+    .status-option.absent input:checked + label {
+        background: #fff0f0;
+        border-color: #d35454;
+    }
 
-        .status-option.absent input:checked + label {
-            background: #fff0ef;
-            border-color: #c0392b;
+    .status-option input:focus-visible + label {
+        outline: 3px solid rgba(37, 99, 235, .2);
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 28px;
+        padding-top: 22px;
+        border-top: 1px solid #edf0f5;
+    }
+
+    .btn {
+        padding: 12px 20px;
+        border: none;
+        border-radius: 8px;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+        transition: .2s;
+    }
+
+    .save-btn {
+        flex: 1;
+        color: white;
+        background: linear-gradient(120deg, #2563eb, #0891b2);
+    }
+
+    .save-btn:hover {
+        background: linear-gradient(120deg, #1d4ed8, #0e7490);
+        transform: translateY(-1px);
+    }
+
+    .cancel-btn {
+        background: #f1f5f9;
+        color: #475569;
+    }
+
+    .cancel-btn:hover {
+        background: #e2e8f0;
+    }
+
+    @media (max-width: 600px) {
+        .edit-card {
+            padding: 22px 18px;
         }
 
         .buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 30px;
-            padding-top: 22px;
-            border-top: 1px solid #eee;
+            flex-direction: column;
         }
+    }
+</style>
+@endpush
 
-        .btn {
-            padding: 13px 20px;
-            border: none;
-            border-radius: 8px;
-            text-decoration: none;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            text-align: center;
-            transition: 0.2s;
-        }
+@section('content')
 
-        .save-btn {
-            flex: 1;
-            color: white;
-            background: linear-gradient(135deg, #8e44ad, #c0392b);
-        }
-
-        .save-btn:hover {
-            opacity: 0.9;
-        }
-
-        .cancel-btn {
-            background: #eee;
-            color: #555;
-        }
-
-        .cancel-btn:hover {
-            background: #ddd;
-        }
-
-        @media (max-width: 600px) {
-            body {
-                padding: 20px 12px;
-            }
-
-            .card {
-                padding: 22px 18px;
-            }
-
-            .buttons {
-                flex-direction: column;
-            }
-        }
-    </style>
-</head>
-
-<body>
-
-<div class="container">
+<div class="edit-container">
 
     <a href="{{ route('attendance.history') }}" class="back-link">
         ← Back to Attendance History
     </a>
 
-    <div class="card">
+    <div class="edit-card">
 
-        <div class="header">
+        <div class="edit-header">
             <h2>Edit Attendance</h2>
             <p>Update the student's attendance information below.</p>
         </div>
 
         @if ($errors->any())
             <div class="error-box">
-                Please check the information you entered.
+                <strong>Please check the following information:</strong>
+                <ul style="margin: 8px 0 0 20px;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
             </div>
         @endif
 
@@ -267,7 +260,8 @@
                     @foreach ($students as $student)
                         <option value="{{ $student->id }}"
                             {{ old('student_id', $attendance->student_id) == $student->id ? 'selected' : '' }}>
-                            {{ $student->student_number }} - {{ $student->first_name }} {{ $student->last_name }}
+                            {{ $student->student_number }} -
+                            {{ $student->first_name }} {{ $student->last_name }}
                         </option>
                     @endforeach
                 </select>
@@ -279,7 +273,10 @@
 
             <div class="student-box">
                 <p>Currently editing attendance record</p>
-                <strong>{{ $attendance->student->first_name }} {{ $attendance->student->last_name }}</strong>
+                <strong>
+                    {{ $attendance->student->first_name }}
+                    {{ $attendance->student->last_name }}
+                </strong>
             </div>
 
             <div class="section-title">Attendance Details</div>
@@ -348,5 +345,4 @@
     </div>
 </div>
 
-</body>
-</html>
+@endsection

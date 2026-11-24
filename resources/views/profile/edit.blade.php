@@ -12,16 +12,18 @@
     }
 
     .profile-intro {
-        background: linear-gradient(120deg, #6246a5, #a34d91);
+        background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
         color: white;
-        padding: 25px 28px;
+        padding: 27px 30px;
         border-radius: 14px;
         margin-bottom: 25px;
+        box-shadow: 0 8px 20px rgba(29, 78, 216, .12);
     }
 
     .profile-intro h2 {
         font-size: 23px;
         margin-bottom: 8px;
+        font-weight: 700;
     }
 
     .profile-intro p {
@@ -35,18 +37,7 @@
         border-radius: 13px;
         margin-bottom: 22px;
         box-shadow: 0 3px 12px rgba(30, 30, 60, .04);
-    }
-
-    .profile-card h3 {
-        color: #252b3b;
-        font-size: 18px;
-        margin-bottom: 8px;
-    }
-
-    .profile-card > p {
-        color: #858b9a;
-        font-size: 13px;
-        margin-bottom: 22px;
+        border: 1px solid #edf0f5;
     }
 
     .profile-card form {
@@ -69,15 +60,16 @@
         outline: none;
         font-size: 14px;
         margin-bottom: 15px;
+        transition: .2s;
     }
 
     .profile-card input:focus {
-        border-color: #8062bd;
-        box-shadow: 0 0 0 3px rgba(128, 98, 189, .1);
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
     }
 
     .profile-card button {
-        background: linear-gradient(135deg, #6246a5, #9b59b6);
+        background: linear-gradient(120deg, #2563eb, #0891b2);
         color: white;
         padding: 11px 20px;
         border: none;
@@ -85,18 +77,20 @@
         font-size: 13px;
         font-weight: 600;
         cursor: pointer;
+        transition: .2s;
     }
 
     .profile-card button:hover {
-        opacity: .9;
+        background: linear-gradient(120deg, #1d4ed8, #0e7490);
+        transform: translateY(-1px);
     }
 
     .profile-card .danger-button {
-        background: #c0392b;
+        background: #dc2626;
     }
 
     .profile-card .danger-button:hover {
-        background: #a93226;
+        background: #b91c1c;
     }
 
     .profile-card .text-sm {
@@ -144,7 +138,7 @@
     }
 
     .profile-card button:focus {
-        outline: 2px solid #8062bd;
+        outline: 2px solid #2563eb;
         outline-offset: 2px;
     }
 
@@ -170,23 +164,14 @@
     </section>
 
     <section class="profile-card">
-        <h3>Profile Information</h3>
-        <p>Update your account name and email address.</p>
-
         @include('profile.partials.update-profile-information-form')
     </section>
 
     <section class="profile-card">
-        <h3>Update Password</h3>
-        <p>Make sure your account uses a strong and secure password.</p>
-
         @include('profile.partials.update-password-form')
     </section>
 
     <section class="profile-card">
-        <h3>Delete Account</h3>
-        <p>Delete your account and its associated information.</p>
-
         @include('profile.partials.delete-user-form')
     </section>
 

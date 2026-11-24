@@ -14,8 +14,8 @@
         }
 
         body {
-            background: #f5f6fa;
-            color: #252b3b;
+            background: #f3f6fb;
+            color: #1e293b;
             min-height: 100vh;
             padding: 45px 20px;
         }
@@ -27,18 +27,18 @@
 
         /* HEADER */
         .header {
-            background: linear-gradient(120deg, #6246a5, #a34d91);
+            background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
             color: white;
-            padding: 30px 35px;
-            border-radius: 14px 14px 0 0;
+            padding: 32px 35px;
+            border-radius: 16px 16px 0 0;
         }
 
         .back-link {
             display: inline-block;
-            color: rgba(255,255,255,.9);
+            color: #dbeafe;
             text-decoration: none;
             font-size: 13px;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             transition: .2s;
         }
 
@@ -48,39 +48,39 @@
         }
 
         .header h1 {
-            font-size: 26px;
+            font-size: 27px;
             margin-bottom: 9px;
         }
 
         .header p {
             font-size: 14px;
-            opacity: .9;
-            line-height: 1.5;
+            color: #e0f2fe;
+            line-height: 1.6;
         }
 
         /* FORM CARD */
         .form-card {
             background: white;
             padding: 32px 35px;
-            border-radius: 0 0 14px 14px;
-            box-shadow: 0 5px 20px rgba(30, 30, 60, .05);
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, .06);
         }
 
         .section-heading {
-            margin-bottom: 25px;
+            margin-bottom: 26px;
             padding-bottom: 18px;
-            border-bottom: 1px solid #edf0f5;
+            border-bottom: 1px solid #e8edf5;
         }
 
         .section-heading h2 {
-            font-size: 18px;
+            font-size: 19px;
             margin-bottom: 7px;
-            color: #252b3b;
+            color: #172554;
         }
 
         .section-heading p {
             font-size: 13px;
-            color: #858b9a;
+            color: #64748b;
         }
 
         .form-grid {
@@ -91,7 +91,7 @@
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 21px;
         }
 
         label {
@@ -99,32 +99,32 @@
             font-size: 13px;
             font-weight: bold;
             margin-bottom: 9px;
-            color: #555e70;
+            color: #334155;
         }
 
         .required {
-            color: #c0396b;
+            color: #dc2626;
         }
 
         input, select {
             width: 100%;
             padding: 13px 14px;
-            border: 1px solid #e1e4ec;
-            border-radius: 8px;
+            border: 1px solid #dbe3ee;
+            border-radius: 9px;
             font-size: 14px;
             outline: none;
             background: white;
-            color: #252b3b;
+            color: #1e293b;
             transition: .2s;
         }
 
         input:focus, select:focus {
-            border-color: #8062bd;
-            box-shadow: 0 0 0 3px rgba(128, 98, 189, .12);
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, .12);
         }
 
         input::placeholder {
-            color: #a0a5b5;
+            color: #94a3b8;
         }
 
         select {
@@ -133,13 +133,13 @@
 
         /* VALIDATION ERRORS */
         .error-box {
-            background: #fff0f0;
-            color: #c0392b;
+            background: #fef2f2;
+            color: #b91c1c;
             padding: 15px 18px;
-            border-radius: 8px;
+            border-radius: 9px;
             margin-bottom: 25px;
             font-size: 13px;
-            border-left: 4px solid #d35454;
+            border-left: 4px solid #ef4444;
         }
 
         .error-box strong {
@@ -158,8 +158,8 @@
             justify-content: flex-end;
             gap: 12px;
             margin-top: 15px;
-            padding-top: 22px;
-            border-top: 1px solid #edf0f5;
+            padding-top: 23px;
+            border-top: 1px solid #e8edf5;
         }
 
         .btn {
@@ -167,8 +167,8 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 21px;
-            border-radius: 8px;
+            padding: 12px 22px;
+            border-radius: 9px;
             text-decoration: none;
             border: none;
             cursor: pointer;
@@ -178,28 +178,28 @@
         }
 
         .cancel-btn {
-            background: #f0eef5;
-            color: #6246a5;
+            background: #eff6ff;
+            color: #1d4ed8;
         }
 
         .cancel-btn:hover {
-            background: #e6e0f2;
+            background: #dbeafe;
         }
 
         .update-btn {
-            background: linear-gradient(135deg, #6246a5, #9b59b6);
+            background: linear-gradient(135deg, #2563eb, #0891b2);
             color: white;
         }
 
         .update-btn:hover {
-            background: linear-gradient(135deg, #50358f, #87449f);
-            box-shadow: 0 4px 10px rgba(98, 70, 165, .2);
+            background: linear-gradient(135deg, #1d4ed8, #0e7490);
+            box-shadow: 0 5px 12px rgba(37, 99, 235, .2);
             transform: translateY(-1px);
         }
 
         .footer {
             text-align: center;
-            color: #a0a5b5;
+            color: #94a3b8;
             font-size: 12px;
             margin-top: 25px;
         }
@@ -211,7 +211,7 @@
             }
 
             .header {
-                padding: 24px 22px;
+                padding: 25px 22px;
             }
 
             .header h1 {

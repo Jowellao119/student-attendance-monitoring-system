@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'StudentTrack | Dashboard')
@@ -8,93 +7,146 @@
 @push('styles')
 <style>
     .welcome {
-        background: linear-gradient(120deg, #6246a5, #a34d91);
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
         color: white;
-        padding: 30px;
-        border-radius: 14px;
+        padding: 32px;
+        border-radius: 20px;
         margin-bottom: 26px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 20px;
-        box-shadow: 0 5px 15px rgba(98, 70, 165, .15);
+        box-shadow: 0 10px 28px rgba(29, 78, 216, .18);
+    }
+
+    .welcome::after {
+        content: "🎓";
+        position: absolute;
+        right: 210px;
+        bottom: -30px;
+        font-size: 125px;
+        opacity: .10;
+        pointer-events: none;
     }
 
     .welcome h2 {
         margin-bottom: 10px;
-        font-size: 23px;
+        font-size: 25px;
+        font-weight: 800;
     }
 
     .welcome p {
         font-size: 14px;
-        opacity: .9;
+        opacity: .92;
         line-height: 1.6;
     }
 
     .welcome-date {
-        margin-top: 12px;
+        margin-top: 13px;
         font-size: 12px !important;
+        opacity: .8 !important;
     }
 
     .welcome-btn {
+        position: relative;
+        z-index: 1;
         background: white;
-        color: #6246a5;
+        color: #1d4ed8;
         text-decoration: none;
         padding: 13px 19px;
-        border-radius: 8px;
+        border-radius: 11px;
         font-size: 13px;
-        font-weight: bold;
+        font-weight: 800;
         white-space: nowrap;
-        transition: .2s;
+        transition: .25s;
+        box-shadow: 0 4px 12px rgba(0,0,0,.08);
     }
 
     .welcome-btn:hover {
-        background: #f1edfa;
-        transform: translateY(-2px);
+        background: #cffafe;
+        color: #0e7490;
+        transform: translateY(-3px);
     }
 
+    /* SUMMARY CARDS */
     .cards {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 18px;
         margin-bottom: 26px;
     }
 
     .card {
+        position: relative;
+        overflow: hidden;
         background: white;
-        padding: 21px;
-        border-radius: 12px;
+        padding: 23px 23px 23px 27px;
+        border-radius: 17px;
         border: 1px solid #edf0f5;
-        border-top: 4px solid #6246a5;
-        box-shadow: 0 3px 10px rgba(0,0,0,.02);
-        transition: .2s;
+        border-left: 5px solid #2563eb;
+        box-shadow: 0 4px 15px rgba(30, 30, 60, .035);
+        transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card::after {
+        content: "";
+        position: absolute;
+        width: 95px;
+        height: 95px;
+        right: -35px;
+        bottom: -48px;
+        border-radius: 50%;
+        background: currentColor;
+        opacity: .035;
+        pointer-events: none;
     }
 
     .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 7px 18px rgba(0,0,0,.06);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(30, 30, 60, .09);
     }
 
-    .card.blue { border-top-color: #4388e8; }
-    .card.green { border-top-color: #28a879; }
-    .card.red { border-top-color: #dc6262; }
-    .card.purple { border-top-color: #8b65cb; }
+    .card.blue {
+        border-left-color: #4388e8;
+        color: #4388e8;
+    }
+
+    .card.green {
+        border-left-color: #28a879;
+        color: #28a879;
+    }
+
+    .card.red {
+        border-left-color: #dc6262;
+        color: #dc6262;
+    }
+
+    .card.purple {
+        border-left-color: #0891b2;
+        color: #0891b2;
+    }
 
     .card-top {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 17px;
+        margin-bottom: 18px;
+        gap: 10px;
     }
 
     .card-label {
         color: #7b8496;
         font-size: 13px;
-        font-weight: bold;
+        font-weight: 700;
     }
 
     .card h2 {
-        font-size: 29px;
+        color: #252b3b;
+        font-size: 33px;
+        font-weight: 800;
+        letter-spacing: -1px;
         margin-bottom: 7px;
     }
 
@@ -104,44 +156,27 @@
     }
 
     .icon {
-        width: 42px;
-        height: 42px;
+        width: 49px;
+        height: 49px;
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: 11px;
+        border-radius: 15px;
+        font-size: 26px;
+        flex-shrink: 0;
+        transition: transform .25s ease;
     }
 
-    .icon svg {
-        width: 21px;
-        height: 21px;
-        stroke: currentColor;
-        fill: none;
-        stroke-width: 1.8;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+    .card:hover .icon {
+        transform: scale(1.12) rotate(-5deg);
     }
 
-    .blue .icon {
-        background: #e8f1ff;
-        color: #4388e8;
-    }
+    .blue .icon { background: #e8f1ff; }
+    .green .icon { background: #e0f7ec; }
+    .red .icon { background: #fde8e8; }
+    .purple .icon { background: #cffafe; }
 
-    .green .icon {
-        background: #e0f7ec;
-        color: #28a879;
-    }
-
-    .red .icon {
-        background: #fde8e8;
-        color: #dc6262;
-    }
-
-    .purple .icon {
-        background: #f0eafb;
-        color: #8b65cb;
-    }
-
+    /* CHARTS AND CONTENT */
     .content-grid {
         display: grid;
         grid-template-columns: 1fr 1.5fr;
@@ -152,9 +187,9 @@
     .section {
         background: white;
         padding: 24px;
-        border-radius: 12px;
+        border-radius: 17px;
         border: 1px solid #edf0f5;
-        box-shadow: 0 3px 10px rgba(0,0,0,.02);
+        box-shadow: 0 4px 15px rgba(30, 30, 60, .035);
         min-width: 0;
         margin-bottom: 25px;
     }
@@ -169,6 +204,8 @@
 
     .section h3 {
         font-size: 16px;
+        font-weight: 800;
+        color: #30364a;
     }
 
     .section-description {
@@ -184,34 +221,37 @@
     }
 
     .view-all {
-        color: #6246a5;
+        color: #2563eb;
         text-decoration: none;
         font-size: 12px;
-        font-weight: bold;
+        font-weight: 800;
         white-space: nowrap;
     }
 
     .view-all:hover {
+        color: #0891b2;
         text-decoration: underline;
     }
 
+    /* TABLE */
     .table-tools {
         margin-bottom: 17px;
     }
 
     .search-input {
         width: 100%;
-        max-width: 320px;
-        padding: 11px 14px;
+        max-width: 340px;
+        padding: 12px 15px;
         border: 1px solid #e2e5ec;
-        border-radius: 8px;
+        border-radius: 10px;
         outline: none;
         font-size: 13px;
+        transition: .2s;
     }
 
     .search-input:focus {
-        border-color: #6246a5;
-        box-shadow: 0 0 0 3px rgba(98, 70, 165, .08);
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
     }
 
     .table-wrap {
@@ -228,25 +268,29 @@
 
     .dashboard-table th,
     .dashboard-table td {
-        padding: 15px 12px;
+        padding: 16px 12px;
         border-bottom: 1px solid #edf0f5;
         font-size: 13px;
     }
 
     .dashboard-table th {
-        color: #7b8496;
-        background: #f8f7fb;
+        color: #64748b;
+        background: #eff6ff;
         font-size: 11px;
         text-transform: uppercase;
-        letter-spacing: .4px;
+        letter-spacing: .5px;
     }
 
     .dashboard-table td {
         color: #515b6e;
     }
 
+    .dashboard-table tbody tr {
+        transition: background .2s;
+    }
+
     .dashboard-table tbody tr:hover {
-        background: #faf9fd;
+        background: #f0f9ff;
     }
 
     .student-info {
@@ -256,37 +300,38 @@
     }
 
     .avatar {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: #eee9f8;
-        color: #6246a5;
+        width: 37px;
+        height: 37px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #dbeafe, #cffafe);
+        color: #1d4ed8;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 11px;
-        font-weight: bold;
+        font-weight: 800;
         flex-shrink: 0;
     }
 
     .student-name {
-        font-weight: bold;
+        font-weight: 700;
         color: #394154;
     }
 
+    /* ATTENDANCE STATUS */
     .status {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 7px 11px;
+        gap: 7px;
+        padding: 7px 12px;
         border-radius: 20px;
         font-size: 11px;
-        font-weight: bold;
+        font-weight: 800;
     }
 
     .status-dot {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
     }
 
@@ -322,6 +367,7 @@
         font-size: 13px;
     }
 
+    /* RESPONSIVE DESIGN */
     @media (max-width: 1150px) {
         .cards {
             grid-template-columns: repeat(2, 1fr);
@@ -336,20 +382,35 @@
         .welcome {
             align-items: flex-start;
             flex-direction: column;
-            padding: 23px;
+            padding: 24px;
+        }
+
+        .welcome::after {
+            right: 15px;
+            font-size: 90px;
         }
 
         .cards {
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 12px;
         }
 
         .card {
-            padding: 16px;
+            padding: 16px 16px 16px 20px;
         }
 
         .card h2 {
-            font-size: 25px;
+            font-size: 27px;
+        }
+
+        .card-label {
+            font-size: 12px;
+        }
+
+        .icon {
+            width: 42px;
+            height: 42px;
+            font-size: 22px;
         }
 
         .section {
@@ -370,11 +431,11 @@
     <!-- WELCOME BANNER -->
     <section class="welcome">
         <div>
-            <h2>Welcome to StudentTrack!</h2>
+            <h2>Welcome to StudentTrack! 👋</h2>
             <p>Manage and monitor student attendance in one place.</p>
 
             <p class="welcome-date">
-                {{ now()->format('F d, Y') }}
+                📅 {{ now()->format('F d, Y') }}
             </p>
         </div>
 
@@ -389,17 +450,8 @@
         <div class="card blue">
             <div class="card-top">
                 <p class="card-label">Total Students</p>
-
-                <div class="icon">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="9" cy="8" r="4"/>
-                        <path d="M3 21v-2a6 6 0 0 1 12 0v2"/>
-                        <path d="M16 4.5a4 4 0 0 1 0 7.5"/>
-                        <path d="M21 21v-2a6 6 0 0 0-4-5.65"/>
-                    </svg>
-                </div>
+                <div class="icon">👨‍🎓</div>
             </div>
-
             <h2>{{ $totalStudents }}</h2>
             <span class="card-subtext">Registered students</span>
         </div>
@@ -407,14 +459,8 @@
         <div class="card green">
             <div class="card-top">
                 <p class="card-label">Present Today</p>
-
-                <div class="icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M20 6L9 17l-5-5"/>
-                    </svg>
-                </div>
+                <div class="icon">✅</div>
             </div>
-
             <h2>{{ $presentToday }}</h2>
             <span class="card-subtext">Marked present today</span>
         </div>
@@ -422,15 +468,8 @@
         <div class="card red">
             <div class="card-top">
                 <p class="card-label">Absent Today</p>
-
-                <div class="icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M18 6L6 18"/>
-                        <path d="M6 6l12 12"/>
-                    </svg>
-                </div>
+                <div class="icon">❌</div>
             </div>
-
             <h2>{{ $absentToday }}</h2>
             <span class="card-subtext">Marked absent today</span>
         </div>
@@ -438,16 +477,8 @@
         <div class="card purple">
             <div class="card-top">
                 <p class="card-label">Attendance Rate</p>
-
-                <div class="icon">
-                    <svg viewBox="0 0 24 24">
-                        <circle cx="7" cy="7" r="2.5"/>
-                        <circle cx="17" cy="17" r="2.5"/>
-                        <path d="M19 5L5 19"/>
-                    </svg>
-                </div>
+                <div class="icon">📊</div>
             </div>
-
             <h2>{{ $attendanceRate }}%</h2>
             <span class="card-subtext">Based on today's records</span>
         </div>
@@ -460,7 +491,7 @@
         <div class="section">
             <div class="section-header">
                 <div>
-                    <h3>Weekly Attendance</h3>
+                    <h3>📈 Weekly Attendance</h3>
                     <p class="section-description">
                         Present and absent records this week
                     </p>
@@ -475,7 +506,7 @@
         <div class="section">
             <div class="section-header">
                 <div>
-                    <h3>Attendance Overview</h3>
+                    <h3>📊 Attendance Overview</h3>
                     <p class="section-description">
                         Today's attendance summary
                     </p>
@@ -494,7 +525,7 @@
 
         <div class="section-header">
             <div>
-                <h3>Recent Attendance Records</h3>
+                <h3>🕒 Recent Attendance Records</h3>
                 <p class="section-description">
                     Latest five attendance records
                 </p>
@@ -510,7 +541,7 @@
                 type="text"
                 id="attendanceSearch"
                 class="search-input"
-                placeholder="Search student number or name..."
+                placeholder="🔍 Search student number or name..."
             >
         </div>
 
@@ -614,15 +645,15 @@
                     label: 'Present',
                     data: weeklyPresent,
                     backgroundColor: '#28a879',
-                    borderRadius: 5,
-                    maxBarThickness: 25
+                    borderRadius: 7,
+                    maxBarThickness: 28
                 },
                 {
                     label: 'Absent',
                     data: weeklyAbsent,
                     backgroundColor: '#dc6262',
-                    borderRadius: 5,
-                    maxBarThickness: 25
+                    borderRadius: 7,
+                    maxBarThickness: 28
                 }
             ]
         },
@@ -645,18 +676,12 @@
             scales: {
                 y: {
                     beginAtZero: true,
-                    ticks: {
-                        precision: 0
-                    },
-                    grid: {
-                        color: '#f0f1f5'
-                    }
+                    ticks: { precision: 0 },
+                    grid: { color: '#f0f1f5' }
                 },
 
                 x: {
-                    grid: {
-                        display: false
-                    }
+                    grid: { display: false }
                 }
             }
         }
@@ -672,7 +697,7 @@
                 data: [{{ $presentToday }}, {{ $absentToday }}],
                 backgroundColor: ['#28a879', '#dc6262'],
                 borderWidth: 0,
-                hoverOffset: 5
+                hoverOffset: 7
             }]
         },
 

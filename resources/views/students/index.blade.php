@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('title', 'StudentTrack | Students')
@@ -7,24 +6,40 @@
 
 @push('styles')
 <style>
+    /* WELCOME BANNER */
     .welcome {
-        background: linear-gradient(120deg, #6246a5, #a34d91);
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
         color: white;
-        padding: 27px 30px;
-        border-radius: 14px;
+        padding: 30px;
+        border-radius: 18px;
         margin-bottom: 25px;
+        box-shadow: 0 10px 25px rgba(29, 78, 216, .15);
     }
 
-    .welcome h1 {
-        font-size: 25px;
+    .welcome::after {
+        content: "🎓";
+        position: absolute;
+        right: 35px;
+        bottom: -30px;
+        font-size: 115px;
+        opacity: .10;
+        pointer-events: none;
+    }
+
+    .welcome h2 {
+        font-size: 24px;
+        font-weight: 800;
         margin-bottom: 9px;
     }
 
     .welcome p {
-        font-size: 14px;
+        font-size: 13px;
         opacity: .9;
     }
 
+    /* SUMMARY CARDS */
     .summary {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -33,35 +48,55 @@
     }
 
     .summary-card {
+        position: relative;
         background: white;
-        padding: 22px;
-        border-radius: 12px;
-        border-top: 4px solid #8062bd;
-        box-shadow: 0 3px 12px rgba(30, 30, 60, .04);
-        transition: .2s;
+        padding: 22px 24px;
+        border-radius: 15px;
+        border: 1px solid #edf0f5;
+        border-left: 5px solid #2563eb;
+        box-shadow: 0 4px 15px rgba(30, 30, 60, .035);
+        transition: .25s;
+    }
+
+    .summary-card:nth-child(2) {
+        border-left-color: #0891b2;
     }
 
     .summary-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 7px 18px rgba(30, 30, 60, .08);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px rgba(30, 30, 60, .08);
     }
 
     .summary-card p {
         color: #858b9a;
         font-size: 13px;
+        font-weight: 600;
         margin-bottom: 10px;
     }
 
     .summary-card h2 {
-        font-size: 28px;
-        color: #6246a5;
+        font-size: 30px;
+        font-weight: 800;
+        color: #1d4ed8;
     }
 
+    .summary-card:nth-child(2) h2 {
+        color: #0891b2;
+    }
+
+    .summary-card h2 span {
+        font-size: 13px;
+        color: #929aaa;
+        font-weight: 500;
+    }
+
+    /* MAIN PANEL */
     .panel {
         background: white;
         padding: 25px;
-        border-radius: 13px;
-        box-shadow: 0 3px 12px rgba(30, 30, 60, .04);
+        border-radius: 17px;
+        border: 1px solid #edf0f5;
+        box-shadow: 0 4px 15px rgba(30, 30, 60, .035);
     }
 
     .panel-header {
@@ -73,7 +108,9 @@
     }
 
     .panel-header h3 {
-        font-size: 18px;
+        font-size: 17px;
+        font-weight: 800;
+        color: #30364a;
     }
 
     .panel-header p {
@@ -82,38 +119,49 @@
         margin-top: 6px;
     }
 
+    /* ADD BUTTON */
     .add-btn {
-        background: #6246a5;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        background: linear-gradient(110deg, #2563eb, #0891b2);
         color: white;
         text-decoration: none;
-        padding: 11px 17px;
-        border-radius: 8px;
+        padding: 12px 18px;
+        border-radius: 10px;
         font-size: 13px;
-        font-weight: bold;
+        font-weight: 800;
         white-space: nowrap;
-        transition: .2s;
+        transition: .25s;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, .18);
     }
 
     .add-btn:hover {
-        background: #50358f;
+        transform: translateY(-2px);
+        box-shadow: 0 7px 16px rgba(37, 99, 235, .25);
+        color: white;
     }
 
+    /* SEARCH */
     .search-box {
         width: 100%;
-        max-width: 350px;
-        padding: 11px 14px;
-        border: 1px solid #e5e7ef;
-        border-radius: 8px;
+        max-width: 370px;
+        padding: 12px 15px;
+        border: 1px solid #e2e5ec;
+        border-radius: 10px;
         outline: none;
         font-size: 13px;
         margin-bottom: 20px;
+        transition: .2s;
     }
 
     .search-box:focus {
-        border-color: #8062bd;
-        box-shadow: 0 0 0 3px rgba(128, 98, 189, .1);
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .10);
     }
 
+    /* TABLE */
     .table-wrapper {
         width: 100%;
         overflow-x: auto;
@@ -134,21 +182,27 @@
     }
 
     .student-table th {
-        background: #f8f7fb;
-        color: #858b9a;
+        background: #eff6ff;
+        color: #64748b;
         font-size: 11px;
+        font-weight: 800;
         text-transform: uppercase;
-        letter-spacing: .4px;
+        letter-spacing: .5px;
     }
 
     .student-table td {
         color: #555e70;
     }
 
-    .student-table tbody tr:hover {
-        background: #faf9fd;
+    .student-table tbody tr {
+        transition: background .2s;
     }
 
+    .student-table tbody tr:hover {
+        background: #f0f9ff;
+    }
+
+    /* STUDENT INFORMATION */
     .student-info {
         display: flex;
         align-items: center;
@@ -157,64 +211,72 @@
     }
 
     .avatar {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        background: #eee8fa;
-        color: #6246a5;
+        width: 37px;
+        height: 37px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, #dbeafe, #cffafe);
+        color: #1d4ed8;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 12px;
-        font-weight: bold;
+        font-weight: 800;
         flex-shrink: 0;
     }
 
     .student-name {
         color: #303649;
-        font-weight: bold;
+        font-weight: 700;
     }
 
     .course-badge {
-        background: #f0edfa;
-        color: #6246a5;
-        padding: 6px 9px;
-        border-radius: 6px;
+        display: inline-block;
+        background: #dbeafe;
+        color: #1d4ed8;
+        padding: 6px 10px;
+        border-radius: 7px;
         font-size: 11px;
-        font-weight: bold;
+        font-weight: 800;
     }
 
+    /* EDIT BUTTON */
     .edit-btn {
         display: inline-block;
-        background: #eeeafa;
-        color: #6246a5;
-        padding: 7px 13px;
-        border-radius: 6px;
+        background: #dbeafe;
+        color: #1d4ed8;
+        padding: 8px 14px;
+        border-radius: 7px;
         text-decoration: none;
         font-size: 12px;
-        font-weight: bold;
+        font-weight: 800;
+        transition: .2s;
     }
 
     .edit-btn:hover {
-        background: #6246a5;
+        background: #2563eb;
         color: white;
+        transform: translateY(-1px);
     }
 
+    /* MESSAGES */
     .empty {
         text-align: center;
         color: #929aaa;
-        padding: 35px;
-    }
-
-    .success {
-        background: #e8f8ef;
-        color: #16834a;
-        padding: 13px 15px;
-        border-radius: 8px;
-        margin-bottom: 18px;
+        padding: 35px !important;
         font-size: 13px;
     }
 
+    .success {
+        background: #dcfce7;
+        color: #15803d;
+        padding: 13px 16px;
+        border-radius: 9px;
+        margin-bottom: 18px;
+        font-size: 13px;
+        border: 1px solid #bbf7d0;
+    }
+
+    /* RESPONSIVE */
     @media (max-width: 650px) {
         .summary {
             grid-template-columns: 1fr;
@@ -228,17 +290,32 @@
             align-items: flex-start;
             flex-direction: column;
         }
+
+        .welcome {
+            padding: 24px;
+        }
+
+        .welcome::after {
+            right: 10px;
+            font-size: 85px;
+        }
+
+        .add-btn {
+            width: 100%;
+        }
     }
 </style>
 @endpush
 
 @section('content')
 
+    <!-- WELCOME BANNER -->
     <section class="welcome">
-        <h1>Manage Your Students</h1>
-        <p>View and organize student information in one place.</p>
+        <h2>Manage Your Students 👨‍🎓</h2>
+        <p>View, organize, and manage student information in one place.</p>
     </section>
 
+    <!-- SUMMARY CARDS -->
     <section class="summary">
         <div class="summary-card">
             <p>Total Registered Students</p>
@@ -249,16 +326,17 @@
             <p>Student Records</p>
             <h2>
                 {{ $students->count() }}
-                <span style="font-size:14px;color:#929aaa;">records</span>
+                <span>records</span>
             </h2>
         </div>
     </section>
 
+    <!-- STUDENT LIST -->
     <section class="panel">
 
         @if (session('success'))
             <div class="success">
-                {{ session('success') }}
+                ✓ {{ session('success') }}
             </div>
         @endif
 
@@ -273,14 +351,16 @@
             </a>
         </div>
 
+        <!-- SEARCH -->
         <input
             type="text"
             id="studentSearch"
             class="search-box"
-            placeholder="Search student number, name, course..."
-            onkeyup="searchStudents()"
+            placeholder="🔍 Search student number, name, course..."
+            oninput="searchStudents()"
         >
 
+        <!-- TABLE -->
         <div class="table-wrapper">
             <table class="student-table">
                 <thead>
@@ -349,23 +429,31 @@
 <script>
     function searchStudents() {
         const input = document.getElementById('studentSearch');
-        const filter = input.value.toLowerCase();
+        const filter = input.value.toLowerCase().trim();
         const rows = document.querySelectorAll('#studentTable tr');
         let visibleCount = 0;
 
         rows.forEach(row => {
+            const isEmptyRow = row.querySelector('.empty');
+
+            if (isEmptyRow) {
+                row.style.display = filter === '' ? '' : 'none';
+                return;
+            }
+
             const text = row.textContent.toLowerCase();
             const matches = text.includes(filter);
 
             row.style.display = matches ? '' : 'none';
 
-            if (matches && !row.querySelector('.empty')) {
+            if (matches) {
                 visibleCount++;
             }
         });
 
         const noResults = document.getElementById('noResults');
-        noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        noResults.style.display =
+            filter !== '' && visibleCount === 0 ? 'block' : 'none';
     }
 </script>
 @endpush

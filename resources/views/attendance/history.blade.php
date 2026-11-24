@@ -7,7 +7,7 @@
 @push('styles')
 <style>
     .welcome {
-        background: linear-gradient(120deg, #6246a5, #a34d91);
+        background: linear-gradient(120deg, #172554, #1d4ed8, #0891b2);
         color: white;
         padding: 27px 30px;
         border-radius: 14px;
@@ -42,6 +42,7 @@
 
     .panel-header h3 {
         font-size: 18px;
+        color: #172554;
     }
 
     .panel-header p {
@@ -78,12 +79,13 @@
         font-size: 13px;
         color: #555e70;
         background: white;
+        transition: .2s;
     }
 
     .form-group input:focus,
     .form-group select:focus {
-        border-color: #8062bd;
-        box-shadow: 0 0 0 3px rgba(128, 98, 189, .1);
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, .1);
     }
 
     .filter-actions {
@@ -93,7 +95,7 @@
     }
 
     .filter-btn {
-        background: #6246a5;
+        background: linear-gradient(120deg, #2563eb, #0891b2);
         color: white;
         border: none;
         padding: 11px 17px;
@@ -106,23 +108,24 @@
     }
 
     .filter-btn:hover {
-        background: #50358f;
+        background: linear-gradient(120deg, #1d4ed8, #0e7490);
+        transform: translateY(-1px);
     }
 
     .reset-btn {
         display: inline-block;
-        background: #eeeafa;
-        color: #6246a5;
+        background: #eff6ff;
+        color: #1d4ed8;
         padding: 11px 17px;
         border-radius: 8px;
         text-decoration: none;
         font-size: 13px;
         font-weight: bold;
+        transition: .2s;
     }
 
     .reset-btn:hover {
-        background: #6246a5;
-        color: white;
+        background: #dbeafe;
     }
 
     .table-wrapper {
@@ -145,8 +148,8 @@
     }
 
     .history-table th {
-        background: #f8f7fb;
-        color: #858b9a;
+        background: #eff6ff;
+        color: #1e40af;
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: .4px;
@@ -157,7 +160,7 @@
     }
 
     .history-table tbody tr:hover {
-        background: #faf9fd;
+        background: #f0f9ff;
     }
 
     .status {
@@ -189,17 +192,18 @@
 
     .edit-btn {
         display: inline-block;
-        background: #eeeafa;
-        color: #6246a5;
+        background: #eff6ff;
+        color: #1d4ed8;
         padding: 7px 13px;
         border-radius: 6px;
         text-decoration: none;
         font-size: 12px;
         font-weight: bold;
+        transition: .2s;
     }
 
     .edit-btn:hover {
-        background: #6246a5;
+        background: #2563eb;
         color: white;
     }
 
@@ -212,6 +216,7 @@
         cursor: pointer;
         font-size: 12px;
         font-weight: bold;
+        transition: .2s;
     }
 
     .delete-btn:hover {
@@ -264,23 +269,23 @@
         border: 1px solid #e5e7ef;
         border-radius: 7px;
         text-decoration: none;
-        color: #6246a5;
+        color: #1d4ed8;
         font-size: 12px;
     }
 
     .pagination a:hover {
-        background: #f2effa;
+        background: #eff6ff;
     }
 
     .pagination .current {
-        background: linear-gradient(135deg, #6246a5, #9b59b6);
+        background: linear-gradient(135deg, #2563eb, #0891b2);
         color: white;
         border-color: transparent;
     }
 
     .pagination .disabled {
         color: #a0a5b5;
-        background: #f8f7fb;
+        background: #f8fafc;
     }
 
     @media (max-width: 900px) {
@@ -305,6 +310,10 @@
 
         .filter-actions {
             flex-wrap: wrap;
+        }
+
+        .welcome {
+            padding: 22px;
         }
     }
 </style>
